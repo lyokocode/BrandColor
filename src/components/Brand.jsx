@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBrandSelection } from '../../store/selectionSlice';
 import { getContrastYIQ } from '../../utils/colorHelper';
-import { AiOutlineCheck } from "react-icons/ai"
 import Clipboard from 'react-clipboard.js';
 import { setCopied } from '../../store/copiedSlice';
+import { AiOutlineCheck } from "react-icons/ai";
+import { MdContentCopy } from "react-icons/md";
+import { useState } from 'react';
 
 export default function Brand({ brand }) {
     const dispatch = useDispatch();
     const selectedBrands = useSelector((state) => state.selection);
     const copied = useSelector((state) => state.copied);
+    const [hovered, setHovered] = useState(false);
 
     const toggleSelected = () => {
         dispatch(toggleBrandSelection(brand.slug));
@@ -18,19 +21,24 @@ export default function Brand({ brand }) {
 
     const handleCopy = (color) => {
         dispatch(setCopied(color));
-        console.log("first")
+    };
+
+    const handleMouseEnter = () => {
+        setHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHovered(false);
     };
 
     return (
         <>
             {brand ? (
-
-
                 <section
                     className={`p-4 border-b-[1px] relative border-[#333] flex items-center `}
                 >
                     {isSelected && (
-                        <span className='absolute left-[-5px] z-50 text-blue-400 '>
+                        <span className='absolute left-[-5px] z-50 text-blue-400'>
                             <AiOutlineCheck size={30} />
                         </span>
                     )}
@@ -41,25 +49,29 @@ export default function Brand({ brand }) {
                         {brand.title}
                     </h5>
                     <div className="flex-1 flex gap-2 flex-wrap">
-
                         {brand.colors ? (
                             <>
-                                {
-                                    brand.colors.map((color, i) => (
-                                        <Clipboard
+                                {brand.colors.map((color, i) => (
+                                    <Clipboard
+
+                                        className={`flex  items-center justify-center h-12 w-20 indent-[-9999px]  ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
+                                        key={i}
+                                        data-clipboard-text={`#${color}`}
+                                        onSuccess={() => handleCopy(color)}
+                                    >
+                                        <span
                                             className={`flex  items-center justify-center h-12 w-20 indent-[-9999px]  ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
-                                            key={i}
-                                            data-clipboard-text={`#${color}`}
-                                            onSuccess={() => handleCopy(color)}
+                                            style={{ backgroundColor: `#${color}`, color: `${getContrastYIQ(color)}` }}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
                                         >
-                                            <span
-                                                className={`flex  items-center justify-center h-12 w-20 indent-[-9999px]  ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
-                                                style={{ backgroundColor: `#${color}`, color: `${getContrastYIQ(color)}` }}
-                                            >
-                                                {color}
-                                            </span>
-                                        </Clipboard>
-                                    ))}
+                                            {color}
+                                            {hovered && (
+                                                <MdContentCopy size={20} className="ml-2" />
+                                            )}
+                                        </span>
+                                    </Clipboard>
+                                ))}
                             </>
                         ) : ("brand colors not found")}
                     </div>
@@ -68,4 +80,3 @@ export default function Brand({ brand }) {
         </>
     );
 }
-

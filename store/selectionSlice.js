@@ -1,11 +1,9 @@
-// brandSlice.js
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [];
 
-const brandSlice = createSlice({
-    name: 'brands',
+const selectionSlice = createSlice({
+    name: 'selection',
     initialState,
     reducers: {
         toggleBrandSelection: (state, action) => {
@@ -14,12 +12,13 @@ const brandSlice = createSlice({
                 ? state.filter((item) => item !== slug)
                 : [...state, slug];
 
-            console.log(updatedState); // Güncel state'i konsola yazdırma
-
             return updatedState;
+        },
+        clearSelectedBrands: (state) => {
+            return [];
         },
     },
 });
 
-export const { toggleBrandSelection } = brandSlice.actions;
-export default brandSlice.reducer;
+export const { toggleBrandSelection, clearSelectedBrands } = selectionSlice.actions;
+export default selectionSlice.reducer;
