@@ -1,4 +1,3 @@
-// reducers/brandReducer.js
 import { createSlice } from '@reduxjs/toolkit';
 import { brandData } from '../brandData';
 
