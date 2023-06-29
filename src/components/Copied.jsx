@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { clearCopied, setCopied } from "../../store/copiedSlice"
+import { clearCopied } from "../../store/copiedSlice"
 import { useDispatch, useSelector } from "react-redux";
 import { getContrastYIQ } from "../../utils/colorHelper";
 
 export function Copied({ color }) {
+
     const copied = useSelector((state) => state.copied);
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         if (copied) {

@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
-import { Sidebar, Content, Copied } from "./components"
+import { Sidebar, Copied } from "./components"
+import { lazy } from "react";
+
+const Content = lazy(() => import("./components/Content"))
 
 function App() {
 

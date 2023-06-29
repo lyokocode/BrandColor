@@ -5,7 +5,7 @@ import { AiOutlineCheck } from "react-icons/ai"
 import Clipboard from 'react-clipboard.js';
 import { setCopied } from '../../store/copiedSlice';
 
-export function Brand({ brand }) {
+export default function Brand({ brand }) {
     const dispatch = useDispatch();
     const selectedBrands = useSelector((state) => state.selection);
     const copied = useSelector((state) => state.copied);

@@ -2,7 +2,7 @@ import { GrSearch } from "react-icons/gr"
 import { useDispatch } from 'react-redux';
 import { setSearch } from '../../store/searchSlice';
 
-export function Search() {
+export default function Search() {
     const dispatch = useDispatch();
 
     const handleSearch = (e) => {

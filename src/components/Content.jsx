@@ -1,8 +1,12 @@
-import { Brand, Search } from "./";
+
+import { lazy } from "react";
 import { useSelector } from 'react-redux';
 
+const Brand = lazy(() => import("./Brand"))
+const Search = lazy(() => import("./Search"))
 
-export function Content() {
+export default function Content() {
+
     const searchValue = useSelector((state) => state.search);
     const brands = useSelector(state => state.brands);
 
