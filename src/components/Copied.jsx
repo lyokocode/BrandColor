@@ -20,7 +20,7 @@ export function Copied({ color }) {
     }, [copied, dispatch]);
 
     return (
-        <div className="fixed bottom-[20px] right-[20px] px-5 py-4  z-50 rounded-md text-base	 "
+        <div className="fixed bottom-[20px] right-[20px] px-5 py-4  z-50 rounded-md text-base "
             style={{ background: `#${color}`, color: `${getContrastYIQ(color)}` }}
         >
             copied #{color} to clipboard

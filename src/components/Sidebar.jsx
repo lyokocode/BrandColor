@@ -9,7 +9,7 @@ export function Sidebar() {
         setModalIsOpen(!modalIsOpen)
     }
     return (
-        <header className="w-[320px] h-full min-w-[320px] border-r-[1px] border-[#ccc] p-6 flex flex-col  gap-5">
+        <header className=" w-[320px] h-full min-w-[320px] border-r-[1px] border-[#ccc] p-6 flex flex-col  gap-5">
             <h1 className="text-2xl text-[#263238] flex items-center">
                 <img src="/logo.jpg" alt="" className="w-14" />
                 <a>Brand</a>
