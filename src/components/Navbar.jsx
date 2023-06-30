@@ -44,8 +44,8 @@ export function Navbar() {
         }
     }, [selectedBrands, brands, dispatch]);
     return (
-        <nav className="flex items-center justify-evenly w-[400px] px-2 ">
-            <div className={`flex items-center justify-center gap-1  h-full ${selectedBrands.length != 0 ? "text-[#555]" : "text-[#888]"}`}>
+        <nav className="flex items-center justify-evenly w-[250px] md:w-[400px] md:px-2 ">
+            <div className={`flex items-center justify-center sm:gap-1 h-full ${selectedBrands.length != 0 ? "text-[#555]" : "text-[#888]"}`}>
                 <a href={downloadUrl} download="brands.css">
                     <MdDownload size={25} />
                 </a>
@@ -61,7 +61,7 @@ export function Navbar() {
                 <div className="brands-length">{selectedBrands.length} brands collected</div>
             </div>
 
-            <span className='w-[2px] h-[50%] bg-[#888] '></span>
+            <span className='hidden sm:block w-[2px] h-[50%] bg-[#888] '></span>
 
             <div className="hidden sm:flex items-center justify-center gap-1  h-full text-[#555]">
                 <MdDownload size={25} />
