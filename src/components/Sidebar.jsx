@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Modal from "react-modal"
 import { GrClose } from "react-icons/gr"
+import { Link } from "react-router-dom"
 
 export function Sidebar() {
 
@@ -10,18 +11,18 @@ export function Sidebar() {
     }
     return (
         <header className=" w-[320px] h-full min-w-[320px] border-r-[1px] border-[#ccc] p-6 flex flex-col  gap-5">
-            <h1 className="text-2xl text-[#263238] flex items-center">
+            <Link to="/" className="text-2xl text-[#263238] flex items-center">
                 <img src="/logo.jpg" alt="" className="w-14" />
-                <a>Brand</a>
+                <span >Brand</span>
                 <strong >Colors</strong>
-            </h1>
+            </Link>
             <h2 className="text-base  text-[#999]">
                 The biggest collection of official brand color codes around. Curated by @brandcolors and friends.
             </h2>
             <nav>
                 <ul>
                     <li>
-                        <a href="" className="block cursor-pointer font-bold text-[#000]">Suggest a Brand</a>
+                        <a className="block cursor-pointer font-bold text-[#000]">Suggest a Brand</a>
                     </li>
                     <li>
                         <button onClick={modalHandle} className="block cursor-pointer font-bold text-[#000]">About BrandColors</button>

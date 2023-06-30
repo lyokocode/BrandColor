@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdLink, MdClose, MdDownload } from 'react-icons/md';
 import { clearSelectedBrands } from '../../store/selectionSlice';
 import { setDownloadUrl, clearDownloadUrl } from '../../store/downloadSlice';
+import { useNavigate } from 'react-router-dom';
 
 export function Navbar() {
     const dispatch = useDispatch();
     const brands = useSelector((state) => state.brands);
     const selectedBrands = useSelector((state) => state.selection);
     const downloadUrl = useSelector((state) => state.download.downloadUrl);
+    const navigate = useNavigate();
+
 
     const handleClearSelection = () => {
         dispatch(clearSelectedBrands());
@@ -18,30 +21,13 @@ export function Navbar() {
         selectedBrands &&
             prompt(
                 "Here's the URL to share",
-                `http://localhost:3000/collection/${selectedBrands.join(',')}`
+                `http://localhost:5173/c/${selectedBrands.join(',')}`
             );
+        navigate(`/c/${selectedBrands.join(',')}`);
+
     };
 
-    const handleDownload = () => {
-        let output = '';
 
-        selectedBrands.forEach((slug) => {
-            const brand = brands.find((brand) => brand.slug === slug);
-            const colors = brand.colors
-                .map((color, key) => `--${slug}-${key}: #${color};`)
-                .join('');
-            output += `${slug} {\n  ${colors}\n}\n`;
-        });
-
-        const blob = new Blob([output], { type: 'text/css' });
-        const url = URL.createObjectURL(blob);
-        dispatch(setDownloadUrl(url));
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'brands.css';
-        link.click();
-    };
 
     const handleClearDownload = () => {
         URL.revokeObjectURL(downloadUrl);

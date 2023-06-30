@@ -1,10 +1,9 @@
 
-import { lazy } from "react";
+// import { lazy } from "react";
 import { useSelector } from 'react-redux';
-import { Navbar } from "./Navbar";
-
-const Brand = lazy(() => import("./Brand"))
-const Search = lazy(() => import("./Search"))
+import Brand from "../components/Brand";
+// const Brand = lazy(() => import("../components/Brand"))
+// const Search = lazy(() => import("../components/Search"))
 
 export default function Content() {
 
@@ -16,18 +15,15 @@ export default function Content() {
     );
 
     return (
-        <main className='flex-1 overflow-y-auto'>
-            <header className="w-full h-14 border-b-[1px] border-[#ccc] flex sticky top-0 z-20">
-                <Search />
-                <Navbar />
-            </header>
+        <>
+            {/* <Header /> */}
             {brands && filteredBrands ? (
-                <div className="">
+                <>
                     {filteredBrands.map(brand => (
                         <Brand brand={brand} key={brand.slug} />
                     ))}
-                </div>
+                </>
             ) : ("loading")}
-        </main>
+        </>
     )
 }
