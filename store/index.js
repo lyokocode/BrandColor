@@ -3,6 +3,7 @@ import brandReducer from './brandSlice';
 import selectionReducer from './selectionSlice';
 import copiedReducer from "./copiedSlice"
 import searchReducer from "./searchSlice"
+import downloadReducer from "./downloadSlice"
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
         brands: brandReducer,
         selection: selectionReducer,
         copied: copiedReducer,
-        search: searchReducer
+        search: searchReducer,
+        download: downloadReducer
 
     },
 });

@@ -11,7 +11,8 @@ export default function Brand({ brand }) {
     const dispatch = useDispatch();
     const selectedBrands = useSelector((state) => state.selection);
     const copied = useSelector((state) => state.copied);
-    const [hovered, setHovered] = useState(false);
+
+    const [hoveredColor, setHoveredColor] = useState(null);
 
     const toggleSelected = () => {
         dispatch(toggleBrandSelection(brand.slug));
@@ -23,12 +24,12 @@ export default function Brand({ brand }) {
         dispatch(setCopied(color));
     };
 
-    const handleMouseEnter = () => {
-        setHovered(true);
+    const handleMouseEnter = (color) => {
+        setHoveredColor(color);
     };
 
     const handleMouseLeave = () => {
-        setHovered(false);
+        setHoveredColor(null);
     };
 
     return (
@@ -53,22 +54,21 @@ export default function Brand({ brand }) {
                             <>
                                 {brand.colors.map((color, i) => (
                                     <Clipboard
-
-                                        className={`flex  items-center justify-center h-12 w-20 indent-[-9999px]  ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
+                                        className={`flex  items-center justify-center h-12 w-20   ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
                                         key={i}
                                         data-clipboard-text={`#${color}`}
                                         onSuccess={() => handleCopy(color)}
                                     >
                                         <span
-                                            className={`flex  items-center justify-center h-12 w-20 indent-[-9999px]  ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
+                                            className={`flex gap-3 items-center justify-center h-10 w-[60px]   ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'indent-[-9999px]  w-12'}`}
                                             style={{ backgroundColor: `#${color}`, color: `${getContrastYIQ(color)}` }}
-                                            onMouseEnter={handleMouseEnter}
+                                            onMouseEnter={() => handleMouseEnter(color)}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            {color}
-                                            {hovered && (
-                                                <MdContentCopy size={20} className="ml-2" />
+                                            {hoveredColor === color && (
+                                                <MdContentCopy size={20} className="ml-2 " />
                                             )}
+                                            #{color}
                                         </span>
                                     </Clipboard>
                                 ))}
