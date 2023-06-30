@@ -14,10 +14,8 @@ const Collection = () => {
     const brands = useSelector(state => state.brands);
 
 
-    // Seçilen markaların slug'larını al ve virgüle göre böle
     const selectedBrandsSlugs = slug.split(',');
 
-    // Seçilen markaları filtrele
     const selectedBrandData = brands.filter((brand) => selectedBrandsSlugs.includes(brand.slug));
     const selectedBrands = useSelector((state) => state.selection);
 

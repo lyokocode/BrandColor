@@ -3,30 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdLink, MdClose, MdDownload } from 'react-icons/md';
 import { clearSelectedBrands } from '../../store/selectionSlice';
 import { setDownloadUrl, clearDownloadUrl } from '../../store/downloadSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function Navbar() {
     const dispatch = useDispatch();
     const brands = useSelector((state) => state.brands);
     const selectedBrands = useSelector((state) => state.selection);
     const downloadUrl = useSelector((state) => state.download.downloadUrl);
-    const navigate = useNavigate();
-
 
     const handleClearSelection = () => {
         dispatch(clearSelectedBrands());
     };
-
-    const getLink = () => {
-        selectedBrands &&
-            prompt(
-                "Here's the URL to share",
-                `http://localhost:5173/c/${selectedBrands.join(',')}`
-            );
-        navigate(`/c/${selectedBrands.join(',')}`);
-
-    };
-
 
 
     const handleClearDownload = () => {
@@ -65,9 +52,9 @@ export function Navbar() {
                 <button onClick={handleClearDownload}>
                     <MdClose size={25} />
                 </button>
-                <button onClick={getLink}>
+                <Link to={selectedBrands.length !== 0 && `/c/${selectedBrands.join(',')}`} >
                     <MdLink size={25} />
-                </button>
+                </Link>
                 <button onClick={handleClearSelection}>
                     <MdClose size={25} />
                 </button>
@@ -76,11 +63,11 @@ export function Navbar() {
 
             <span className='w-[2px] h-[50%] bg-[#888] '></span>
 
-            <div className="flex items-center justify-center gap-1  h-full text-[#555]">
+            <div className="hidden sm:flex items-center justify-center gap-1  h-full text-[#555]">
                 <MdDownload size={25} />
                 <span>All Brands</span>
             </div>
         </nav>
     );
-};
+}
 

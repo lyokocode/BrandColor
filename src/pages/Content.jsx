@@ -1,9 +1,6 @@
 
-// import { lazy } from "react";
 import { useSelector } from 'react-redux';
 import Brand from "../components/Brand";
-// const Brand = lazy(() => import("../components/Brand"))
-// const Search = lazy(() => import("../components/Search"))
 
 export default function Content() {
 
@@ -16,7 +13,6 @@ export default function Content() {
 
     return (
         <>
-            {/* <Header /> */}
             {brands && filteredBrands ? (
                 <>
                     {filteredBrands.map(brand => (

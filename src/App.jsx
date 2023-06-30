@@ -1,11 +1,9 @@
 import { useSelector } from "react-redux";
 import { Sidebar, Copied } from "./components"
-import { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Collection from "./pages/Collection";
 import Header from "./components/Header";
 import Content from "./pages/Content"
-// const Content = lazy(() => import("./pages/Content"))
 
 function App() {
 
@@ -13,7 +11,7 @@ function App() {
 
   return (
 
-    <section className="flex w-full h-full">
+    <section className="md:flex w-full h-full">
       <Router>
 
         <Sidebar />

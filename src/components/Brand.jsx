@@ -7,7 +7,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import { useState } from 'react';
 
-export default function Brand({ brand }) {
+export default function Brand({ brand, style }) {
     const dispatch = useDispatch();
     const selectedBrands = useSelector((state) => state.selection);
 
@@ -35,6 +35,7 @@ export default function Brand({ brand }) {
         <>
             {brand ? (
                 <section
+                    style={style}
                     className={`p-4 border-b-[1px] relative border-[#999] flex items-center `}
                 >
                     {isSelected && (
@@ -43,17 +44,17 @@ export default function Brand({ brand }) {
                         </span>
                     )}
                     <h5
-                        className="w-40 my-auto py-4 cursor-pointer"
+                        className="w-20 sm:w-40  my-auto py-4 cursor-pointer "
                         onClick={toggleSelected}
                     >
                         {brand.title}
                     </h5>
-                    <div className="flex-1 flex gap-2 flex-wrap">
+                    <div className="flex-1 flex gap-0 sm:gap-2 flex-wrap">
                         {brand.colors ? (
                             <>
                                 {brand.colors.map((color, i) => (
                                     <Clipboard
-                                        className={`flex  items-center justify-center h-12 w-20   ${isSelected ? 'flex-1 min-w-[150px] indent-0' : 'w-12'}`}
+                                        className={`flex  items-center justify-center h-12 w-20   ${isSelected ? 'flex-1  min-w-[150px] indent-0' : 'w-12'}`}
                                         key={i}
                                         data-clipboard-text={`#${color}`}
                                         onSuccess={() => handleCopy(color)}

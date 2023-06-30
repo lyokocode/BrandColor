@@ -14,7 +14,7 @@ const selectionSlice = createSlice({
 
             return updatedState;
         },
-        clearSelectedBrands: (state) => {
+        clearSelectedBrands: () => {
             return [];
         },
     },
